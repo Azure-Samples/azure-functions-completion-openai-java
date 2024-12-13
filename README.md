@@ -19,7 +19,9 @@ languages:
 
 This sample highlights how to use the Azure Functions OpenAI TextCompletion input binding to send content to Azure OpenAI and get a result using Java.
 
-You can learn more about the OpenAI trigger and bindings extension in the [GitHub documentation](https://github.com/Azure/azure-functions-openai-extension) and in the [Official OpenAI extension documentation](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-openai)
+You can learn more about the OpenAI trigger and bindings extension in the [GitHub documentation](https://github.com/Azure/azure-functions-openai-extension) and in the [Official OpenAI extension documentation](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-openai).
+
+You can opt in to have a VNet used in the sample by setting SKIP_VNET to true in the parameters.
 
 ## Prerequisites
 
@@ -61,6 +63,13 @@ Once you have your Azure subscription, run the following in a new terminal windo
 
 ```bash
 azd provision
+```
+
+Alternatively, you can opt-in to have a VNet used in the sample. To do so, use `azd env` to configure `SKIP_VNET` to `false` before running `azd up`:
+
+```bash
+azd env set SKIP_VNET false
+azd up
 ```
 
 Take note of the value of `AZURE_OPENAI_ENDPOINT` which can be found in `./.azure/<env name from azd provision>/.env`.  It will look something like:
