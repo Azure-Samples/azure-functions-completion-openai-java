@@ -1,0 +1,18 @@
+#@host=https://<functionapp>.azurewebsites.net
+
+# To call in Azure you will need to set the key in the header
+# key can be obtained by running: az functionapp keys list --name <FunctionAppName> --resource-group <ResourceGroupName> --query "masterKey"
+# and setting the key in the header as follows:
+# x-functions-key: <key>
+# Warning: if key is set in this file, do not save and commit the file.  
+# instead save this file to a secure location and use it as needed
+
+@host=http://localhost:7071
+
+### Ask to perform some task on content
+POST  {{host}}/api/PostUserContent
+Content-Type: application/json
+
+{
+    "content": "Write a short paragraph about the weather in Seattle"
+}
