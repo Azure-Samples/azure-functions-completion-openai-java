@@ -17,6 +17,7 @@ resource account 'Microsoft.CognitiveServices/accounts@2023-10-01-preview' = {
   kind: kind
   properties: {
     customSubDomainName: name
+    disableLocalAuth: true
     networkAcls : {
       defaultAction: publicNetworkAccess == 'Enabled' ? 'Allow' : 'Deny'
       virtualNetworkRules: []
