@@ -116,6 +116,7 @@ module ai 'core/ai/openai.bicep' = {
     location: location
     tags: tags
     publicNetworkAccess: skipVnet == 'false' ? 'Disabled' : 'Enabled'
+    disableLocalAuth: disableLocalAuth 
     sku: {
       name: openAiSkuName
     }

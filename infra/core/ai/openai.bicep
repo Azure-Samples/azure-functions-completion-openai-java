@@ -1,11 +1,11 @@
 param name string
 param location string = resourceGroup().location
 param tags object = {}
- 
-param customSubDomainName string = name
+
 param deployments array = []
 param kind string = 'OpenAI'
 param publicNetworkAccess string = 'Enabled'
+param disableLocalAuth bool = true
 param sku object = {
   name: 'S0'
 }
@@ -17,7 +17,7 @@ resource account 'Microsoft.CognitiveServices/accounts@2023-10-01-preview' = {
   kind: kind
   properties: {
     customSubDomainName: name
-    disableLocalAuth: true
+    disableLocalAuth: disableLocalAuth
     networkAcls : {
       defaultAction: publicNetworkAccess == 'Enabled' ? 'Allow' : 'Deny'
       virtualNetworkRules: []
