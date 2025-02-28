@@ -3,10 +3,10 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "skipVnet": {
-      "value": "${SKIP_VNET}=true"
+      "value": "${SKIP_VNET=true}"
     },
     "environmentName": {
-      "value": "${AZURE_ENV_NAME}"
+      "value": "${AZURE_ENV_NAME=functionscompletionopenaijava}"
     },
     "location": {
       "value": "${AZURE_LOCATION}"
