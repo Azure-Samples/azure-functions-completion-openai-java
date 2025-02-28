@@ -45,6 +45,7 @@ var chatGpt = {
 
 @description('Id of the user or app to assign application roles')
 param principalId string = ''
+@description('Flag to decide where to create role assignments for current user running the deployment')
 param createRoleForUser bool = true
 
 var abbrs = loadJsonContent('./abbreviations.json')
