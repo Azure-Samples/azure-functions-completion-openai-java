@@ -29,11 +29,11 @@ param openAiServiceName string = ''
  
 param openAiSkuName string
 @allowed([ 'azure', 'openai', 'azure_custom' ])
-param openAiHost string // Set in main.parameters.json
+param openAiHost string = 'azure'
 
 param chatGptModelName string = ''
 param chatGptDeploymentName string = ''
-param chatGptDeploymentVersion string = ''
+param chatGptDeploymentVersion string = '2024-08-06'
 param chatGptDeploymentCapacity int = 0
 
 var chatGpt = {
@@ -45,6 +45,8 @@ var chatGpt = {
 
 @description('Id of the user or app to assign application roles')
 param principalId string = ''
+@description('Flag to decide where to create role assignments for current user running the deployment')
+param createRoleForUser bool = true
 
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
@@ -116,6 +118,7 @@ module ai 'core/ai/openai.bicep' = {
     location: location
     tags: tags
     publicNetworkAccess: skipVnet == 'false' ? 'Disabled' : 'Enabled'
+    disableLocalAuth: disableLocalAuth 
     sku: {
       name: openAiSkuName
     }
@@ -167,7 +170,7 @@ module storageRoleAssignmentApi 'app/storage-Access.bicep' = {
   }
 }
 
-module storageRoleAssignmentUserIdentityApi 'app/storage-Access.bicep' = {
+module storageRoleAssignmentUserIdentityApi 'app/storage-Access.bicep' = if (createRoleForUser) {
   name: 'storageRoleAssignmentUserIdentityApi'
   scope: rg
   params: {
@@ -191,7 +194,7 @@ module storageQueueDataContributorRoleAssignmentprocessor 'app/storage-Access.bi
   }
 }
 
-module storageQueueDataContributorRoleAssignmentUserIdentityprocessor 'app/storage-Access.bicep' = {
+module storageQueueDataContributorRoleAssignmentUserIdentityprocessor 'app/storage-Access.bicep' = if (createRoleForUser)  {
   name: 'storageQueueDataContributorRoleAssignmentUserIdentityprocessor'
   scope: rg
   params: {
@@ -215,7 +218,7 @@ module storageTableDataContributorRoleAssignmentprocessor 'app/storage-Access.bi
   }
 }
 
-module storageTableDataContributorRoleAssignmentUserIdentityprocessor 'app/storage-Access.bicep' = {
+module storageTableDataContributorRoleAssignmentUserIdentityprocessor 'app/storage-Access.bicep' =  if (createRoleForUser) {
   name: 'storageTableDataContributorRoleAssignmentUserIdentityprocessor'
   scope: rg
   params: {
@@ -240,7 +243,7 @@ module cogRoleAssignmentApi 'app/ai-Cog-Service-Access.bicep' = {
   }
 }
 
-module cogRoleAssignmentUserIdentityApi 'app/ai-Cog-Service-Access.bicep' = {
+module cogRoleAssignmentUserIdentityApi 'app/ai-Cog-Service-Access.bicep' =  if (createRoleForUser) {
   name: 'cogRoleAssignmentUserIdentityApi'
   scope: rg
   params: {
