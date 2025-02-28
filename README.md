@@ -145,6 +145,24 @@ You can run the `azd up` command as many times as you need to both provision you
 >[!NOTE]
 >Deployed code files are always overwritten by the latest deployment package.
 
+## Using GitHub Actions
+
+The `azure-dev` GitHub Actions workflow is a CI/CD workflow that will attempt to provision and deploy this solution. Before it can work you need to set up your fork of this repo with the following instructions.
+
+1. Clone your fork locally
+
+`
+git clone https://github.com/Azure-Samples/azure-functions-completion-openai-java
+`
+
+2. In the local repository folder, run:
+
+`
+azd pipeline config
+`
+
+3. Follow the prompts to configure the pipeline with your Azure account and subscription.
+
 ## Clean up resources
 
 When you're done working with your function app and related resources, you can use this command to delete the function app and its related resources from Azure and avoid incurring any further costs (--purge does not leave a soft delete of AI resource and recovers your quota):
