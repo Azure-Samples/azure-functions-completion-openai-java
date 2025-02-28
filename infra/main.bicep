@@ -168,7 +168,7 @@ module storageRoleAssignmentApi 'app/storage-Access.bicep' = {
   }
 }
 
-module storageRoleAssignmentUserIdentityApi 'app/storage-Access.bicep' = {
+module storageRoleAssignmentUserIdentityApi 'app/storage-Access.bicep' = if (!empty(principalId)) {
   name: 'storageRoleAssignmentUserIdentityApi'
   scope: rg
   params: {
@@ -192,7 +192,7 @@ module storageQueueDataContributorRoleAssignmentprocessor 'app/storage-Access.bi
   }
 }
 
-module storageQueueDataContributorRoleAssignmentUserIdentityprocessor 'app/storage-Access.bicep' = {
+module storageQueueDataContributorRoleAssignmentUserIdentityprocessor 'app/storage-Access.bicep' = if (!empty(principalId))  {
   name: 'storageQueueDataContributorRoleAssignmentUserIdentityprocessor'
   scope: rg
   params: {
@@ -216,7 +216,7 @@ module storageTableDataContributorRoleAssignmentprocessor 'app/storage-Access.bi
   }
 }
 
-module storageTableDataContributorRoleAssignmentUserIdentityprocessor 'app/storage-Access.bicep' = {
+module storageTableDataContributorRoleAssignmentUserIdentityprocessor 'app/storage-Access.bicep' =  if (!empty(principalId)) {
   name: 'storageTableDataContributorRoleAssignmentUserIdentityprocessor'
   scope: rg
   params: {
@@ -241,7 +241,7 @@ module cogRoleAssignmentApi 'app/ai-Cog-Service-Access.bicep' = {
   }
 }
 
-module cogRoleAssignmentUserIdentityApi 'app/ai-Cog-Service-Access.bicep' = {
+module cogRoleAssignmentUserIdentityApi 'app/ai-Cog-Service-Access.bicep' =  if (!empty(principalId)) {
   name: 'cogRoleAssignmentUserIdentityApi'
   scope: rg
   params: {
