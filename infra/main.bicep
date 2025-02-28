@@ -29,11 +29,11 @@ param openAiServiceName string = ''
  
 param openAiSkuName string
 @allowed([ 'azure', 'openai', 'azure_custom' ])
-param openAiHost string // Set in main.parameters.json
+param openAiHost string = 'azure'
 
 param chatGptModelName string = ''
 param chatGptDeploymentName string = ''
-param chatGptDeploymentVersion string = ''
+param chatGptDeploymentVersion string = '2024-08-06'
 param chatGptDeploymentCapacity int = 0
 
 var chatGpt = {
