@@ -45,6 +45,7 @@ var chatGpt = {
 
 @description('Id of the user or app to assign application roles')
 param principalId string = ''
+param createRoleForUser bool = true
 
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
@@ -168,7 +169,7 @@ module storageRoleAssignmentApi 'app/storage-Access.bicep' = {
   }
 }
 
-module storageRoleAssignmentUserIdentityApi 'app/storage-Access.bicep' = if (!empty(principalId)) {
+module storageRoleAssignmentUserIdentityApi 'app/storage-Access.bicep' = if (createRoleForUser) {
   name: 'storageRoleAssignmentUserIdentityApi'
   scope: rg
   params: {
@@ -192,7 +193,7 @@ module storageQueueDataContributorRoleAssignmentprocessor 'app/storage-Access.bi
   }
 }
 
-module storageQueueDataContributorRoleAssignmentUserIdentityprocessor 'app/storage-Access.bicep' = if (!empty(principalId))  {
+module storageQueueDataContributorRoleAssignmentUserIdentityprocessor 'app/storage-Access.bicep' = if (createRoleForUser)  {
   name: 'storageQueueDataContributorRoleAssignmentUserIdentityprocessor'
   scope: rg
   params: {
@@ -216,7 +217,7 @@ module storageTableDataContributorRoleAssignmentprocessor 'app/storage-Access.bi
   }
 }
 
-module storageTableDataContributorRoleAssignmentUserIdentityprocessor 'app/storage-Access.bicep' =  if (!empty(principalId)) {
+module storageTableDataContributorRoleAssignmentUserIdentityprocessor 'app/storage-Access.bicep' =  if (createRoleForUser) {
   name: 'storageTableDataContributorRoleAssignmentUserIdentityprocessor'
   scope: rg
   params: {
@@ -241,7 +242,7 @@ module cogRoleAssignmentApi 'app/ai-Cog-Service-Access.bicep' = {
   }
 }
 
-module cogRoleAssignmentUserIdentityApi 'app/ai-Cog-Service-Access.bicep' =  if (!empty(principalId)) {
+module cogRoleAssignmentUserIdentityApi 'app/ai-Cog-Service-Access.bicep' =  if (createRoleForUser) {
   name: 'cogRoleAssignmentUserIdentityApi'
   scope: rg
   params: {
