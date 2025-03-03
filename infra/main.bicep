@@ -33,13 +33,11 @@ param openAiHost string = 'azure'
 
 param chatGptModelName string = ''
 param chatGptDeploymentName string = ''
-param chatGptDeploymentVersion string = '2024-08-06'
 param chatGptDeploymentCapacity int = 0
 
 var chatGpt = {
   modelName: !empty(chatGptModelName) ? chatGptModelName : startsWith(openAiHost, 'azure') ? 'gpt-4o' : 'gpt-4o'
   deploymentName: !empty(chatGptDeploymentName) ? chatGptDeploymentName : 'completion'
-  deploymentVersion: !empty(chatGptDeploymentVersion) ? chatGptDeploymentVersion : '2024-08-06'
   deploymentCapacity: chatGptDeploymentCapacity != 0 ? chatGptDeploymentCapacity : 40
 }
 
@@ -129,7 +127,6 @@ module ai 'core/ai/openai.bicep' = {
         model: {
           format: 'OpenAI'
           name: chatGpt.modelName
-          version: chatGpt.deploymentVersion
         }
         scaleSettings: {
           scaleType: 'Standard'
