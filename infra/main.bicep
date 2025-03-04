@@ -36,7 +36,7 @@ param chatGptDeploymentName string = ''
 param chatGptDeploymentCapacity int = 0
 
 var chatGpt = {
-  modelName: !empty(chatGptModelName) ? chatGptModelName : startsWith(openAiHost, 'azure') ? 'gpt-4o' : 'gpt-4o'
+  modelName: !empty(chatGptModelName) ? chatGptModelName : startsWith(openAiHost, 'azure') ? 'gpt-4o-mini' : 'gpt-4o-mini'
   deploymentName: !empty(chatGptDeploymentName) ? chatGptDeploymentName : 'completion'
   deploymentCapacity: chatGptDeploymentCapacity != 0 ? chatGptDeploymentCapacity : 40
 }

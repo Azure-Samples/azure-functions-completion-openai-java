@@ -50,7 +50,7 @@ You can opt in to have a VNet used in the sample by setting SKIP_VNET to true in
 
 You have a few options for getting started with this template. The quickest way to get started is [GitHub Codespaces](#github-codespaces), since it will setup all the tools for you, but you can also [set it up locally](#local-environment). You can also use a [VS Code dev container](#vs-code-dev-containers)
 
-This template uses gpt-4o which may not be available in all Azure regions. Check for [up-to-date region availability](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#standard-deployment-model-availability) and select a region during deployment accordingly
+This template uses gpt-4o-mini which may not be available in all Azure regions. Check for [up-to-date region availability](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#standard-deployment-model-availability) and select a region during deployment accordingly
 
   * We recommend using East US 2
 
@@ -158,7 +158,7 @@ Take note of the value of `AZURE_OPENAI_ENDPOINT` which can be found in `./.azur
 AZURE_OPENAI_ENDPOINT="https://cog-<unique string>.openai.azure.com/"
 ```
 
-Alternatively you can [create an OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) in the Azure portal to get your key and endpoint. After it deploys, click Go to resource and view the Endpoint value.  You will also need to deploy a model, e.g. with name `completion` and model `gpt-4o`.
+Alternatively you can [create an OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) in the Azure portal to get your key and endpoint. After it deploys, click Go to resource and view the Endpoint value.  You will also need to deploy a model, e.g. with name `completion` and model `gpt-4o-mini`.
 
 Create local.settings.json (should be in the same folder as host.json). This will be created if you run azd provision:
 
